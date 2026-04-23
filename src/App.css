@@ -1,0 +1,154 @@
+/* reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f5f7fa;
+  color: #333;
+}
+
+/* container principal */
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* título */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* input */
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+/* card padrão */
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* perfil */
+.profile img {
+  width: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+/* repos */
+.repo-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.repo-link {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.repo-link:hover {
+  text-decoration: underline;
+}
+
+/* ─── TEMA CLARO ─── */
+.tema-claro {
+  background-color: #f5f7fa;
+  color: #333;
+}
+
+.tema-claro .card {
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.tema-claro input {
+  background: #ffffff;
+  color: #333;
+  border-color: #ccc;
+}
+
+.tema-claro .repo-link {
+  color: #2563eb;
+}
+
+/* ─── TEMA ESCURO ─── */
+.tema-escuro {
+  background-color: #111827;
+  color: #f0f0f0;
+}
+
+.tema-escuro .card {
+  background: #1f2937;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.tema-escuro input {
+  background: #1f2937;
+  color: #f0f0f0;
+  border-color: #374151;
+}
+
+.tema-escuro .repo-link {
+  color: #60a5fa;
+}
+
+.historico-container {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.historico-item {
+  background-color: #e5e7eb;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.historico-item:hover {
+  background-color: #cbd5f5;
+}
+
+.botao-tema {
+  position: absolute;
+  top: 1%;
+  right: 45%;
+  left: 45%;
+  background-color: #111827b7;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.tema-escuro .botao-tema {
+  position: absolute;
+  top: 1%;
+  right: 45%;
+  left: 45%;
+  background-color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
