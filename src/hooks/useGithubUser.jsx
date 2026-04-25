@@ -10,26 +10,28 @@ export function useGithubUser() {
   const controllerRef = useRef(null);
 
   async function buscar(username) {
-    // ❗ cancela requisição anterior
     if (controllerRef.current) {
       controllerRef.current.abort();
     }
 
-    // 🔥 cria novo controller
     const controller = new AbortController();
     controllerRef.current = controller;
 
     setLoading(true);
     setError(null);
     try {
-      const [userResult, reposResult] = await Promise.all([ 
-        buscarUser(username, controller.signal), 
-        buscarRepo(username, controller.signal), ]);
-      setPerfil(userResult);
-      setRepos(reposResult);
-    } catch (err) {
+        const user = await buscarUser(username, controller.signal);
+        setPerfil(user);
+      try {
+        const repos = await buscarRepo(username, controller.signal);
+        setRepos(repos);
+      } catch (err) {
+          if (err.name !== "AbortError") {
+            setRepos([]);
+        }
+    }} catch (err) {
         if (err.name !== "AbortError") {
-          setError(err.message);
+          setError(`Erro: ${err.message}`)
           setPerfil(null);
           setRepos([]);}    
     } finally {

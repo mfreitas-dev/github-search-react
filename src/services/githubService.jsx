@@ -3,8 +3,18 @@ export async function buscarUser(username, signal) {
     { signal });
 
   if (!res.ok) {
-    throw new Error(`USER_NOT_FOUND. COD.: ${res.status}`);
-  }
+    if(res.status === 404){
+      throw new Error("Usuário não encontrado.");
+    }
+    if(res.status === 403){
+      const resultado = await fetch("https://api.github.com/rate_limit");
+      const dataRate = await resultado.json();
+      const timestamp = Number(dataRate.rate.reset);
+      const datareset = new Date(timestamp * 1000);
+      throw new Error(`Limite de requisições excedido. Reseta em: ${datareset}`)
+    }
+    throw new Error("Erro ao buscar usuário fornecido");
+  };
 
   const data = await res.json();
 
@@ -23,7 +33,7 @@ export async function buscarRepo(username, signal) {
   const res = await fetch(`https://api.github.com/users/${username}/repos`, {signal});
 
   if (!res.ok) {
-    throw new Error(`REPO_NOT_FOUND. COD.: ${res.status}`);
+    throw new Error("Erro ao buscar os repositórios do usuário fornecido"); 
   }
 
   const data = await res.json();

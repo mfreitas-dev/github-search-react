@@ -49,7 +49,7 @@ function App() {
               {loading && <p>Carregando...</p>} 
               {error && <p>{error}</p>} 
               {perfil && <UserCard perfil={perfil} />} 
-              <RepoList repos={repos} /> 
+              {perfil && <RepoList repos={repos} /> }
               </div> ); }; 
               
               export default App;
