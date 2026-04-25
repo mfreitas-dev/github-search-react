@@ -5,6 +5,7 @@ import RepoList from "./components/RepoList";
 import { useGithubUser } from "./hooks/useGithubUser"; 
 import { useDebounce, useLocalStorage } from "./hooks/useDebounce"; 
 import HistoricoList from "./components/HistoricoList"; 
+import Spinner from "./components/Spinner";
 
 function App() { 
   const [tema, setTema] = useLocalStorage("tema", "claro"); 
@@ -39,6 +40,24 @@ function App() {
             });} }, 
             // eslint-disable-next-line react-hooks/exhaustive-deps
             [perfil]); 
+         
+        const [showLoading, setShowLoading] = useState(false);
+
+        useEffect(() => {
+          let timer;
+
+          if (loading) {
+            timer = setTimeout(() => {
+              setShowLoading(true);
+            }, 300);
+          } else {
+            timer = setTimeout(() => {
+              setShowLoading(false);
+            }, 100);
+          }
+
+          return () => clearTimeout(timer);
+        }, [loading]);
             
             return ( 
             <div className="container"> 
@@ -46,7 +65,7 @@ function App() {
             <button onClick={toggleTema} className="botao-tema">{(tema === "claro") ? "Mudar para tema escuro" : "Mudar para tema claro"}</button> 
             <SearchInput value={busca} onChange={e => setBusca(e.target.value)} onFocus={() => setMostrarHistorico(true)} onBlur={() => setTimeout(() => setMostrarHistorico(false), 150)}/> 
               {mostrarHistorico && <HistoricoList historico={historico} buscar={buscar} />} 
-              {loading && <p>Carregando...</p>} 
+              {showLoading && <Spinner />} 
               {error && <p>{error}</p>} 
               {perfil && <UserCard perfil={perfil} />} 
               {perfil && <RepoList repos={repos} /> }
