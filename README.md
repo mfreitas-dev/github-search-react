@@ -1,16 +1,79 @@
-# React + Vite
+#  GitHub Search App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Aplicação web que permite buscar usuários do GitHub e visualizar seus repositórios públicos.
 
-Currently, two official plugins are available:
+## Link VERCEL:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- https://github-search-react-seven.vercel.app/
 
-## React Compiler
+##  Sobre o projeto
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Este projeto foi desenvolvido com o objetivo de praticar conceitos de React e consumo de APIs.
 
-## Expanding the ESLint configuration
+A aplicação permite buscar usuários do GitHub e exibir:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Informações do perfil
+- Lista de repositórios
+- Histórico de buscas
+
+
+## Funcionalidades
+
+-  Busca de usuários do GitHub
+-  Exibição de perfil (foto, bio, seguidores, etc)
+-  Listagem de repositórios
+-  Histórico de buscas
+-  Tema claro/escuro
+-  Loading com spinner
+-  Tratamento de erros (usuário não encontrado, etc)
+-  Debounce na busca
+-  Cancelamento de requisições (AbortController)
+
+
+## Tecnologias utilizadas
+
+- React
+- JavaScript (ES6+)
+- CSS3
+- Fetch API
+- Git & GitHub
+
+
+## Como rodar o projeto
+
+```bash
+# Clone o repositório
+git clone https://github.com/mfreitas-dev/github-search-react
+
+# Acesse a pasta
+cd github-search-react
+
+# Instale as dependências
+npm install
+
+# Execute o projeto
+npm run dev
+
+```
+
+
+## O que eu aprendi com este projeto
+
+- Uso de hooks do React (useState, useEffect, useRef)
+- Criação de custom hooks
+- Consumo de APIs externas
+- Tratamento de erros assíncronos
+- Organização de código em camadas
+- Boas práticas de UX (loading, debounce, etc)
+- Estilização nível aplicação real
+- Boas práticas do git e github
+
+
+## Melhorias futuras
+- Filtros para os repositórios
+- Adicionar paginação de repositórios
+- Ordenação por estrelas (se você implementou)
+
+
+## Autor
+- Desenvolvido por Matheus Bomfim Santos Freitas
