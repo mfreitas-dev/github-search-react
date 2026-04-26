@@ -2,10 +2,12 @@ import { useState, useRef } from "react";
 import { buscarRepo, buscarUser } from "../services/githubService";
 
 export function useGithubUser() {
-  const [perfil, setPerfil] = useState(null);
-  const [repos, setRepos] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [state, setState] = useState({
+    status: "idle", // idle | loading | success | error
+    perfil: null,
+    repos: [],
+    error: null
+  });
 
   const controllerRef = useRef(null);
 
@@ -17,33 +19,48 @@ export function useGithubUser() {
     const controller = new AbortController();
     controllerRef.current = controller;
 
-    setLoading(true);
-    setError(null);
-    try {
-        const user = await buscarUser(username, controller.signal);
-        setPerfil(user);
-      try {
-        const repos = await buscarRepo(username, controller.signal);
-        setRepos(repos);
-      } catch (err) {
-          if (err.name !== "AbortError") {
-            setRepos([]);
-        }
-    }} catch (err) {
-        if (err.name !== "AbortError") {
-          setError(`Erro: ${err.message}`)
-          setPerfil(null);
-          setRepos([]);}    
-    } finally {
-      setLoading(false);
-    };
+    setState({
+      status: "loading",
+      perfil: null,
+      repos: [],
+      error: null
+    });
+
+  try {
+    const [userResult, repoResult] = await Promise.allSettled([
+      buscarUser(username, controller.signal),
+      buscarRepo(username, controller.signal)
+    ]);
+
+    if (userResult.status === "rejected") {
+      throw new Error("Usuário não encontrado.");
+    }
+
+    const user = userResult.value;
+
+    const repos = repoResult.status === "fulfilled" ? repoResult.value : [];
+
+    setState({
+      status: "success",
+      perfil: user,
+      repos: repos,
+      error: null
+    });
+
+  } catch (err) {
+    setState({
+      status: "error",
+      perfil: null,
+      repos: [],
+      error: err.message
+    });
+  } finally{
+    controllerRef.current = null;
   }
+}
 
   return {
-    perfil,
-    repos,
-    loading,
-    error,
+    state,
     buscar
   };
 };

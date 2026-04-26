@@ -5,7 +5,7 @@ export default function UserCard({ perfil }) {
     <div className="card profile">
       <img src={perfil.foto} alt="foto de perfil" />
       <p>@{perfil.username}</p>
-      <p><strong>Nome: {perfil.nome}</strong> </p>
+      <p><strong>NOME: {perfil.nome}</strong> </p>
       <a href={perfil.link} target="_blank" rel="noreferrer">Github</a>
       <p>BIO: {(perfil.bio) || "Sem bio"}</p>
       <p>SEGUIDORES: {perfil.seguidores}</p>

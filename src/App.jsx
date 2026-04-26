@@ -66,7 +66,7 @@ function App() {
             <SearchInput value={busca} onChange={e => setBusca(e.target.value)} onFocus={() => setMostrarHistorico(true)} onBlur={() => setTimeout(() => setMostrarHistorico(false), 150)}/> 
               {mostrarHistorico && <HistoricoList historico={historico} buscar={buscar} />} 
               {showLoading && <Spinner />} 
-              {error && <p>{error}</p>} 
+              {error && <p className="erro">{error}</p>} 
               {perfil && <UserCard perfil={perfil} />} 
               {perfil && <RepoList repos={repos} /> }
               </div> ); }; 

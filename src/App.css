@@ -164,3 +164,7 @@ input:focus {
     transform: rotate(360deg);
   }
 }
+
+.erro {
+  color: #ec2424;
+}
