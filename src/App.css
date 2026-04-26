@@ -8,6 +8,7 @@
 body {
   background-color: #f5f7fa;
   color: #333;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .container {
@@ -23,11 +24,17 @@ h1 {
 
 input {
   width: 100%;
-  padding: 10px;
-  border-radius: 8px;
+  padding: 12px;
+  border-radius: 10px;
   border: 1px solid #ccc;
   margin-bottom: 20px;
   font-size: 16px;
+  transition: 0.2s;
+}
+
+input:focus {
+  border-color: #2563eb;
+  outline: none;
 }
 
 .card {
@@ -36,6 +43,12 @@ input {
   padding: 16px;
   margin-bottom: 16px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
 }
 
 .profile img {
@@ -85,7 +98,6 @@ input {
 
 .tema-escuro .card {
   background: #1f2937;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
 .tema-escuro input {
@@ -116,33 +128,26 @@ input {
 
 .historico-item:hover {
   background-color: #cbd5f5;
+  transform: scale(1.05);
 }
 
 .botao-tema {
-  position: absolute;
-  top: 1%;
-  right: 45%;
-  left: 45%;
-  background-color: #111827b7;
-  padding: 6px 12px;
+  display: block;
+  margin: 0 auto 20px auto;
+  padding: 8px 16px;
   border-radius: 999px;
   cursor: pointer;
   font-size: 14px;
+  border: none;
+  background-color: #111827;
+  color: white;
   transition: 0.2s;
 }
 
 .tema-escuro .botao-tema {
-  position: absolute;
-  top: 1%;
-  right: 45%;
-  left: 45%;
   background-color: #ffffff;
-  padding: 6px 12px;
-  border-radius: 999px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: 0.2s;
-};
+  color: #111827;
+}
 
 .spinner {
   width: 50px;
@@ -151,6 +156,7 @@ input {
   border-top: 5px solid #3498db;
   border-radius: 50%;
   animation: spin 0.7s ease-in-out infinite;
+  margin: 20px auto;
 }
 
 @keyframes spin {
